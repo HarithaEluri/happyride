@@ -1,0 +1,113 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Hamara Ghar</title>
+		<link href="web/css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="web/css/slider.css" rel="stylesheet" type="text/css"  media="all" />
+		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		  <script type="text/javascript" src="web/js/jquery.easing.1.3.js"></script> 
+		    <script type="text/javascript" src="web/js/camera.min.js"></script>
+				<script type="text/javascript">
+			   jQuery(function(){
+				jQuery('#camera_wrap_1').camera({
+					height: '500px',
+					pagination: false,
+				});
+			});
+		  </script>
+		  <script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},200);
+				});
+			});
+		</script>
+	</head>
+	<body>
+	<!----start-wrap----->
+	<div class="wrap">
+		<!----start-header----->
+		<div class="header"  id="top">
+			<!----top-header----->
+			<div class="top-header">
+							<!----start-social-icons----->
+	<!--  		   	<div class="social-icons">
+					<ul>
+						<li><a href="https://www.facebook.com/"><img src="images/facebook.png" title="facebook" /></a></li>
+						<li><a href="https://twitter.com/"><img src="images/twitter.png" title="twitter" /></a></li>
+						<li><a href="https://plus.google.com/"><img src="images/google.png" title="google plus" /></a></li>
+					</ul>
+				</div> --> 
+				<div class="clear"> </div>
+				<!----End-social-icons----->
+			</div> 
+			<!----End-top-header----->
+			<!---start-top-nav---->
+			<div class="top-nav">
+				<div class="top-nav-left">
+					<ul>
+						<li><a href="welcome.jsp"><img src="images/logo1.png" width = 90px; title="logo" /></a></li>
+						<li class="active"><a href="welcome.jsp">Home</a></li>
+						<li><a href="about1.jsp">About Us</a></li>
+						<li><a href="GalleryLog.html">Gallery</a></li>
+						<li><a href="viewAd2.jsp">My Properties</a>
+						
+						<li><a href = "LogoutController">Logout</a></li>
+						
+						<div class="clear"> </div>
+					</ul>
+				</div>
+				<div class="top-nav-right">
+					<form>
+						<input type="text"><input type="submit" value="" /></form>			
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<!---End-top-nav---->
+		</div>
+		<!----End-header----->
+	</div>
+	<!----End-wrap----->
+	<!--start-image-slider---->
+			<div class="slider">					     
+					<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">									           
+						<div data-src="images/9.jpg">  </div> 
+						<div data-src="images/h1.jpg">  </div>
+						<div data-src="images/slider1.jpg">  </div>
+						<div data-src="images/slider2.jpg">  </div>
+					</div>
+					<div class="clear"> </div>					       
+			</div>					
+		 <!--End-image-slider---->
+		 <!---start-content---->
+		 <div class="content">
+		 	<div class="top-grids">
+		 		<div class="wrap">
+			 		<div class="top-grid">
+			 			<a href="salepost1.jsp"><img src="images/2.png" title="icon-name"></a>
+			 			<h3>For sale</h3>
+			 			<p>User can buy houses here. </p>
+			 			<!--  <a class="button" href="#">Submit</a>-->
+			 		</div>
+			 		<div class="top-grid">
+			 			<a href="PostFile.jsp"><img src="images/6.png" title="icon-name"></a>
+			 			<h3>Post Ad</h3>
+			 			<p>Post your Ad here  </p>
+			 	    <!--<a class="button" href="#">Submit</a>-->
+			 			
+			 		</div>
+			 		<div class="top-grid last-topgrid">
+			 			<a href="RentLog1.jsp"><img src="images/4.png" title="icon-name"></a>
+			 			<h3>For Rent</h3>
+			 			<p>Rent a house? </p>
+			 		<!--<a class="button" href="#">Submit</a>-->
+			 		</div>
+			 		<div class="clear"> </div>
+		 		</div>
+		 	</div>
+	</div>
+	</body>
+</html>

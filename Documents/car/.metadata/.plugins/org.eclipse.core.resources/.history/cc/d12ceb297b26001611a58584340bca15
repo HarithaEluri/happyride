@@ -1,0 +1,46 @@
+package com.hamaraghar.image;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import org.apache.log4j.Logger;
+
+import com.hamaraGhar.dao.ConnectionDao;
+
+
+public class Uploadimage {
+	static Logger log = Logger.getLogger(Uploadimage.class);
+
+	public static void main(String[] args) {
+		String driverName = "com.mysql.jdbc.Driver";
+	      String url = "jdbc:mysql://localhost:3306/";;
+	      String dbName = "hamaraGharDB";
+	      String userName = "root";
+	      String password = "password";
+	      Connection con = null;
+
+	      try{
+	       Class.forName(driverName);
+	       con = DriverManager.getConnection(url+dbName,userName,password);
+	       Statement st = con.createStatement();
+	       File imgfile = new File("/home/user/Desktop/images.jpg");
+	       FileInputStream fin = new FileInputStream(imgfile);
+	       PreparedStatement pre = con.prepareStatement("insert into Tablename values(?)");
+	       pre.setBinaryStream(1,fin,(int)imgfile.length());
+	       pre.executeUpdate();
+	       log.info("Inserting Successfully!");
+	       pre.close();
+	       con.close(); 
+	     }
+	     catch (Exception e){
+	      log.info(e.getMessage());
+	     }
+	    }
+
+}

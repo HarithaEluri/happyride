@@ -1,0 +1,192 @@
+package com.hamaraGhar.dao;
+import java.util.List;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+//import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+
+
+
+
+
+
+//import java.util.Collection;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.Logger;
+
+
+
+
+
+
+
+
+
+
+import com.hamaraGhar.beans.*;
+//import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+//import javax.servlet.http.HttpSession;
+
+public class postDao{
+	//Logger log = Logger.getLogger(postDao.class);
+	org.apache.log4j.Logger log = Logger.getLogger(postDao.class);
+	Object appender;
+	Statement st=null;
+	Connection conn = null;
+	public postDao() throws IOException {
+		//postDao connDAO = new postDao();
+		ConnectionDao con = new ConnectionDao();
+		conn = con.getConnection();
+		try {
+			st = conn.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public int deleteAd(String adtitle) throws SQLException {
+		int result = 1;
+		String query = "update property2 set status = 'sold out' where unique_id = ?";
+		PreparedStatement pst = conn.prepareStatement(query);
+		pst.setString(1, adtitle);
+		result = pst.executeUpdate();
+		return result;
+		}
+	
+	public int update(postBean cbean) 
+            throws SQLException {
+        System.out.println("in postdao");
+        int result;
+        String query = "update property2 set username ='"+cbean.getUsername()+"',contact = '"+cbean.getContact()+"',email='"+cbean.getEmail()+"',address='"+cbean.getAddress()+"',bhk = '"+cbean.getBhk()+"',cost = '"+cbean.getPrice()+"',category = '"+cbean.getCategory()+"',image = '"+cbean.getImage()+"',status = '"+cbean.getStatus()+"',unique_id = '"+cbean.getUnique_id()+"'where unique_id='"+cbean.getUnique_id()+"'";
+        PreparedStatement pst = conn.prepareStatement(query);
+        pst.setString(1, cbean.getUsername());
+        pst.setString(2, cbean.getContact());
+        pst.setString(3, cbean.getEmail());
+        pst.setString(4, cbean.getAddress());
+        pst.setString(5, cbean.getBhk());
+        pst.setInt(6, cbean.getPrice());
+        pst.setString(7,cbean.getCategory());     
+        pst.setString(8,cbean.getImage());
+        pst.setString(9,cbean.getStatus());
+        pst.setString(10,cbean.getUnique_id());
+        result = pst.executeUpdate();
+         return result;
+    }
+	public List<postBean> listAd(String user) throws SQLException,ClassNotFoundException{
+		List<postBean> conCollection = new ArrayList<postBean>();
+		String query = "SELECT * FROM property2 where username='"+user+"'";
+		ResultSet result = st.executeQuery(query);
+		postBean contactBean2;
+		while(result.next()){
+			//Retrieve by column name
+
+			String  username = result.getString("username");
+			String  contact = result.getString("contact");
+			String  email = result.getString("email");
+			String  address = result.getString("address");
+			String  bhk = result.getString("bhk");
+			int price = result.getInt("cost");
+			String  category = result.getString("category");
+			String image= result.getString("file");
+			String status = result.getString("status");
+		    String unique_id = result.getString("unique_id");
+			contactBean2 = new postBean(username,contact,email,address,bhk, price,category,image,status,unique_id);
+			conCollection.add(contactBean2);
+		}
+		
+		log.info(conCollection.size());
+		return conCollection;
+	}
+	public List<postBean> saleAd(String user) throws SQLException,ClassNotFoundException{
+		String offset = null;
+		String noOfRecords = null;
+		
+		List<postBean> conCollection = new ArrayList<postBean>();
+		String query = "SELECT username,contact,email,address,bhk,cost,category,file,status,unique_id FROM property2 where category = 'sale' ORDER BY username";
+		System.out.println(query);
+		ResultSet result = st.executeQuery(query);
+		postBean contactBean2;
+		while(result.next()){
+			//Retrieve by column name
+			String  username = result.getString("username");
+			String  contact = result.getString("contact");
+			String  email = result.getString("email");
+			String  address = result.getString("address");
+			String  bhk = result.getString("bhk");
+			int price = result.getInt("cost");
+			String  category = result.getString("category");
+			String image = result.getString("file");
+			String status = result.getString("status");
+			String unique_id = result.getString("unique_id");
+			contactBean2 = new postBean(username,contact,email,address,bhk, price,category,image,status,unique_id);
+			conCollection.add(contactBean2);
+		}
+		st.close();
+		
+		
+		//return clist;
+		log.info(conCollection.size());
+		return conCollection;
+	}
+	public List<postBean> rentAd(String user) throws SQLException,ClassNotFoundException{
+		List<postBean> conCollection = new ArrayList<postBean>();
+		String query = "SELECT * FROM property2 where category = 'rent'";
+		ResultSet result = st.executeQuery(query);
+		postBean contactBean2;
+		while(result.next()){
+			//Retrieve by column name
+
+			String  username = result.getString("username");
+			String  contact = result.getString("contact");
+			String  email = result.getString("email");
+			String  address = result.getString("address");
+			String  bhk = result.getString("bhk");
+			int price = result.getInt("cost");
+			String  category = result.getString("category");
+			String image= result.getString("file");
+			String status = result.getString("status");
+			String unique_id = result.getString("unique_id");
+			contactBean2 = new postBean(username,contact,email,address,bhk, price,category,image,status,unique_id);
+			conCollection.add(contactBean2);
+		}
+		log.info(conCollection.size());
+		return conCollection;
+	}
+
+	public List<postBean> priceFilter(String range1,String range2,String category) throws SQLException {
+		PreparedStatement st;
+		List<postBean> lst = new ArrayList<postBean>();
+		String query = "select * from property2 where cost >= ? and cost <= ? and category =?";
+		st = conn.prepareStatement(query);
+		String from = range1;
+		String to = range2;
+		st.setString(1, from);
+		st.setString(2, to);
+		st.setString(3, category);
+		ResultSet result = st.executeQuery();
+		postBean contactBean2;
+		while(result.next()){
+			//Retrieve by column name
+			String  username = result.getString("username");
+			String  contact = result.getString("contact");
+			String  email = result.getString("email");
+			String  address = result.getString("address");
+			String  bhk = result.getString("bhk");
+			int  price = result.getInt("cost");
+			String image= result.getString("file");
+			String status = result.getString("status");
+			
+			 String  unique_id = result.getString("unique_id");
+			contactBean2 = new postBean(username,contact,email,address,bhk, price,category,image,status,unique_id);
+			lst.add(contactBean2);
+		}
+		return lst;
+	}
+	
+}

@@ -1,0 +1,10 @@
+1.Table1:
+	user:
+		1.creating user table:
+		    create table user(username varchar(15) primary key , password varchar(10));
+		2.Inserting values into user:
+		    insert into user values('ram','123');
+2.Table2:
+	newsale:
+		1. create table NewSale(user varchar(15),foreignkey references user(username),bhk Integer,contactno varchar(10),emailid varchar(25),state varchar(20),district varchar(20),locality varchar(50),cost integer,category varchar(20));
+		2.insert into NewSale values(123,'ram',2,9876543210,'ram@gmail.com','ap','hyderabad','kphb',400000,'rent');

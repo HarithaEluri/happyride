@@ -1,0 +1,141 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Contact Dealer</title>
+		<link href="web/css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href="web/css/slider.css" rel="stylesheet" type="text/css"  media="all" />
+		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		  
+		  <script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+				});
+			});
+		</script>
+		
+<%@include file ="header.jsp"%>		
+	</head>
+	<body>
+	<!----start-wrap----->
+	<div class="wrap">
+		<!----start-header----->
+		<div class="header"  id="top">
+			<!----top-header----->
+			<div class="top-header">
+				<div class="clear"> </div>
+				<!----End-social-icons----->
+			</div>
+			<!----End-top-header----->
+			<!---start-top-nav---->
+			<div class="top-nav">
+				<div class="top-nav-left">
+					<ul>
+						<li><a href="welcome.jsp">Home</a></li>
+						<li><a href="about.jsp">About Us</a></li>
+						<li><a href="LoginForm.jsp">Login</a></li>
+						<li><a href="gallery.html">Gallery</a></li>
+						<!--<li><a href="viewAd.jsp">History</a>-->
+						
+						<li class="active"><a href="ContactDealer.jsp">Contact</a></li>
+						<div class="clear"> </div>
+					</ul>
+				</div>
+				<div class="top-nav-right">
+					<form>
+						<input type="text"><input type="submit" value="" />
+					</form>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<!---End-top-nav---->
+		</div>
+		<!----End-header----->
+	</div>
+	<!----End-wrap----->
+		 <!---start-content---->
+		 <div class="content">
+		 	<!---start-contact---->
+		 	<div class="contact">
+		 		<div class="wrap">
+				<div class="section group">				
+				<div class="col span_1_of_3">
+					 <div class="contact_info">
+			    	 	<h3>Find Us Here</h3>
+			    	 		<div class="map" id = "map-canvas">
+					   		<img src = "map.png"><br><small><a href="https://www.google.co.in/maps/place/BVRIT/@17.52596,78.370085,17z/data=!3m1!4b1!4m2!3m1!1s0x3bcb8defd4fe2b81:0x64cfbb18950c8603" style="color:#666;text-align:left;font-size:12px">View Larger Map</a></small>
+					   		</div>
+      				</div>
+       			<!-- <div class="company_address">
+				     	<h3>Company Information :</h3>
+						    	<p>500 Lorem Ipsum Dolor Sit,</p>
+						   		<p>22-56-2-9 Sit Amet, Lorem,</p>
+						   		<p>USA</p>
+				   		<p>Phone:(00) 222 666 444</p>
+				   		<p>Fax: (000) 000 00 00 0</p>
+				 	 	<p>Email: <span>info@mycompany.com</span></p>
+				   		<p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
+				   </div>
+ -->				</div>				
+				<div class="col span_2_of_3">
+				  <div class="contact-form">
+				  	<h3>Contact Dealer </h3>
+					    <form method="post" action="ContactMessage.jsp">
+					    	<div>
+					    		<span><label>For </label></span>
+					    		<input type = "radio" name = "r1" value = " An individual" checked>An individual
+					    		<input type = "radio" name = "r1" value = " A  Family" >A  Family
+					    	</div>
+					    	<div>
+						    	<span><label>NAME</label></span>
+						    	<span><input name="userName" type="text" class="textbox" required></span>
+						    </div>
+						    <div>
+						    	<span><label>E-MAIL</label></span>
+						    	<span><input name="userEmail" type="text" class="textbox" required></span>
+						    </div>
+						    <div>
+						     	<span><label>MOBILE</label></span>
+						    	<span><input name="userPhone" type="text" class="textbox" required></span>
+						    </div>
+						    
+						   <div>
+						   		<!-- <span><input type="submit" value="Submit"></span> -->	
+						   		<span><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Submit</button></span>
+  								<!-- Modal -->
+  								<div class="modal fade" id="myModal" role="dialog">
+								    <div class="modal-dialog">
+								    
+								      <!-- Modal content-->
+								      <div class="modal-content">
+								       <!--  <div class="modal-header">
+								          <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        </div> -->
+								        <div class="modal-body">
+								          <p>We will Email/SMS your details to the owner</p>
+								        </div>
+								        <div class="modal-footer">
+								          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								        </div>
+								      </div>
+								      
+								    </div>
+								  </div>					 
+ 							 </div>
+					    </form>
+
+				    </div>
+  				</div>				
+			  </div>
+			</div>
+			</div>
+			</div>
+			
+			</body>
+			</html>
+		 	<!---End-contact---->
+		 <!---End-content---->

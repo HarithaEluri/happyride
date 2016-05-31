@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>Login Form</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	 <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="assets/plugins/select2/select2_metro.css" />
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link href="assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
+	<!-- END PAGE LEVEL STYLES -->
+	<link rel="shortcut icon" href="favicon.ico" />
+<%@include file="header.jsp"%>
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+ <script language="javascript" type="text/javascript">
+ $(function () {
+     $("#fileupload").change(function () {
+         $("#photo").html("");
+         var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+         if (regex.test($(this).val().toLowerCase())) {
+             if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
+                 $("#photo").show();
+                 $("#photo")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
+             }
+             else {
+                 if (typeof (FileReader) != "undefined") {
+                     $("#photo").show();
+                     $("#photo").append("<img />");
+                     var reader = new FileReader();
+                     reader.onload = function (e) {
+                         $("#photo img").attr("src", e.target.result);
+                     }
+                     reader.readAsDataURL($(this)[0].files[0]);
+                 } else {
+                     alert("This browser does not support FileReader.");
+                 }
+             }
+         } else {
+             alert("Please upload a valid image file.");
+         }
+     });
+ });
+</script>
+<style type="text/css">
+body
+{
+    font-family: Arial;
+    font-size: 10pt;
+}
+#photo
+{
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);
+    min-height: 400px;
+    min-width: 400px;
+    display: none;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Post Ad</title>
+</head>
+<%@include file = "header.jsp" %>
+
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="login">
+	
+	<!-- END LOGO -->
+	<!-- BEGIN LOGIN -->
+	<div class="content">
+		<!-- BEGIN LOGIN FORM -->
+		<form class="form-vertical login-form" action="PostController" method="post" enctype="multipart/form-data">
+		
+			<h3 class="form-title"><font color = "black">Post Ad</font></h3>
+			<div class="alert alert-error hide">
+				<button class="close" data-dismiss="alert"></button>
+				<span>Enter your property details.</span>
+			</div>
+			<div class="control-group">
+	
+				<label class="control-label visible-ie8 visible-ie9">Username</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i></i>
+						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="eg : johnsmith123" name="user" required/>
+					</div>
+				</div>
+			</div>
+					<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Unique Id</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<!--  <i class="icon-phone-alt"></i>-->
+						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="unique id" name="unique_id" required/>
+					</div>
+				</div>
+			</div>
+			<!-- <h4> Hint: username followed by a number</h4> -->
+			<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Contact No</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-phone-alt"></i>
+						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="Mobile no" name="contact" required/>
+					</div>
+				</div>
+			</div>
+						<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Email</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-phone-alt"></i>
+						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="eg:johnsmith@example.com" name="email" required/>
+					</div>
+				</div>
+			</div>
+						<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Address</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-phone-alt"></i>
+						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="H.no, street, city, state, country" name="address" required/>
+					</div>
+				</div>
+			</div>
+						<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Price $</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<!--  <i class="icon-phone-alt"></i>-->
+						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="in Numbers" name="price" required/>
+					</div>
+				</div>
+			</div>
+						<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">BHK</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-phone-alt"></i>
+<!-- 						<input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="contact" name="contact"/>-->
+					<select class="m-wrap placeholder-no-fix" name = "bhk" required>
+  							<option>bhk</option>
+  							<option>1R</option>
+  							<option>1BHK</option>
+  							<option>2BHK</option>
+  							<option>3BHK</option>
+  							<option>3BHK+</option>
+						</select> 
+  			
+					</div>
+				</div>
+			</div>
+			
+					<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Category</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-phone-alt"></i>
+						<!--  <input class="m-wrap placeholder-no-fix" type="text" autocomplete="off" placeholder="contact" name="contact"/>-->
+					<select class="m-wrap placeholder-no-fix"  name = "category" required>
+  							<option>Category</option>
+  							<option>Rent</option>
+  							<option>Sale</option>
+  								</select> 
+  			
+					</div>
+				</div>
+			</div>
+			
+				<div class="control-group">
+				<label class="control-label visible-ie8 visible-ie9">Uplaod File</label>
+				<div class="controls">
+					<div class="input-icon left">
+						<i class="icon-phone-alt"></i>
+						<input class="m-wrap placeholder-no-fix" type="file" name = "file" autocomplete="off" placeholder="fileupload" name="fileup" id = "fileupload"/>
+					<div id="photo">
+	</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-actions">
+				<!--  <label class="checkbox">
+				<input type="checkbox" name="remember" value="1"/> Remember me
+				</label> -->
+				<button type="submit" class="btn blue pull-right">
+				PostAD <i class="m-icon-swapright m-icon-white"></i>
+				</button>
+				<a href = "welcome1.jsp">
+				<button type="button" id="back-btn" class="btn">
+				<i class="m-icon-swapleft"></i> Back
+				</button></a></div>
+		</form>
+		<!-- END REGISTRATION FORM -->
+	</div>
+	<!-- END LOGIN -->
+	<!-- BEGIN COPYRIGHT -->
+	<div class="copyright">
+		2015 &copy; <a href="#">Hamara Ghar</a>Post AD
+	</div>
+	<!-- END COPYRIGHT -->
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->   <script src="assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>
+	<!--[if lt IE 9]>
+	<script src="assets/plugins/excanvas.min.js"></script>
+	<script src="assets/plugins/respond.min.js"></script>  
+	<![endif]-->   
+	<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>  
+	<script src="assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript" ></script>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script src="assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="assets/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="assets/plugins/select2/select2.min.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="assets/scripts/app.js" type="text/javascript"></script>
+	<script src="assets/scripts/login-soft.js" type="text/javascript"></script>      
+	<!-- END PAGE LEVEL SCRIPTS --> 
+	<script>
+		jQuery(document).ready(function() {     
+		  App.init();
+		  Login.init();
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

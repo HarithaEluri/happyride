@@ -1,0 +1,58 @@
+<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="425004691459-b4dt6lc76q9vp4r347tkv84ntkc9ua2d.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  </head>
+  <body>
+    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log("Name: " + profile.getName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+      <a href="#" onclick="signOut();">Sign out</a>
+      
+        function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            console.log('User signed out.');
+          });
+        }
+     // auth2 is initialized with gapi.auth2.init() and a user is signed in.
+
+        if (auth2.isSignedIn.get()) {
+          var profile = auth2.currentUser.get().getBasicProfile();
+          console.log('ID: ' + profile.getId());
+          console.log('Name: ' + profile.getName());
+          console.log('Image URL: ' + profile.getImageUrl());
+          console.log('Email: ' + profile.getEmail());
+        }
+        function onSignIn(googleUser) {
+        	  var id_token = googleUser.getAuthResponse().id_token;
+        	  ...
+        	}
+        {
+        	 "iss": "https://accounts.google.com",
+        	 "sub": "110169484474386276334",
+        	 "azp": "1008719970978-hb24n2dstb40o45d4feuo2ukqmcc6381.apps.googleusercontent.com",
+        	 "email": "billd1600@gmail.com",
+        	 "at_hash": "X_B3Z3Fi4udZ2mf75RWo3w",
+        	 "email_verified": "true",
+        	 "aud": "1008719970978-hb24n2dstb40o45d4feuo2ukqmcc6381.apps.googleusercontent.com",
+        	 "iat": "1433978353",
+        	 "exp": "1433981953"
+        	}
+     
+      </script>
+  
+  </body>
+</html>

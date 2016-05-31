@@ -1,0 +1,181 @@
+package com.hamaraGhar.controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+ 
+
+
+
+
+
+
+
+
+
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Part;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
+import com.hamaraGhar.dao.ConnectionDao;
+@MultipartConfig(fileSizeThreshold=1024*1024*2, // 2MB
+maxFileSize=1024*1024*10,      // 10MB
+maxRequestSize=1024*1024*50)
+@WebServlet("/PostController")
+
+public class PostController extends HttpServlet {
+	private static final String SAVE_DIR="Image";
+	//Logger log = Logger.getLogger(PostController.class);
+
+	String url ="jdbc:mysql://localhost:3306/hamaraGharDB";
+	//String url ="jdbc:postgresql://localhost:5432/sample";
+	String user ="root";
+	//String user ="postgres";
+	String password ="password";
+	 
+     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String apppath = "/home/user/eclipse/workingprogress/hamaraGharApp25552/WebContent";
+        
+            String savePath = apppath + File.separator + SAVE_DIR;
+                File fileSaveDir=new File(savePath);
+                if(!fileSaveDir.exists()){
+                    fileSaveDir.mkdir();
+                }
+		//int result;
+		String username = request.getParameter("user");
+		
+		String contact = request.getParameter("contact");
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		int  price = Integer.parseInt(request.getParameter("price"));
+		String bhk = request.getParameter("bhk");
+	   // String img = request.getParameter("fileup");
+	    String category = request.getParameter("category");
+	    String unique_id = request.getParameter("unique_id");
+	    Part part=request.getPart("file");
+	    System.out.println("before part");
+        String fileName=extractFileName(part);
+        System.out.println("after part");
+        part.write(savePath + File.separator + fileName);
+        String filePath= savePath + File.separator + fileName ;
+        System.out.println("file path " + filePath);
+        String status = "avaliable";
+        /*InputStream inputStream = null;
+        Part filePart = request.getPart("fileup");
+        log.info(username);
+        log.info(contact);
+        log.info(filePart+"\t"+email);
+        if (filePart != null) {
+            // prints out some information for debugging
+            log.info(filePart.getName());
+            log.info(filePart.getSize());
+           log.info(filePart.getContentType());
+             
+            // obtains input stream of the upload file
+            inputStream = filePart.getInputStream();
+        }*/
+        Connection conn = null; // connection to the database
+        String message = null;  // message will be sent back to client
+       
+        try {
+        	
+            // connects to the database
+        	Class.forName("com.mysql.jdbc.Driver");
+        	//Class.forName("org.postgresql.Driver");
+        	Logger log = Logger.getRootLogger();
+        	log.info("mysql driver is loaded");
+        	
+            conn = DriverManager.getConnection(url, user, password);
+            String sql = "insert into property2(username,contact,email,address,cost,bhk,category,file,status,unique_id) values('"+username+"','"+contact+"','"+email+"','"+address+"','"+price+"','"+bhk+"','"+category+"','"+filePath+"','"+status+"','"+unique_id+"')";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.executeUpdate(sql);
+            // constructs SQL statement
+     //       String sql = "insert into property2(username,contact,email,address,cost,bhk,category,file) values(?,?,?,?,?,?,?,?)";
+           // System.out.println(sql);
+          /*  PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1,username );
+            statement.setString(2, contact);
+            statement.setString(3, email);
+            statement.setString(4, address);
+            statement.setInt(5, price);
+            statement.setString(6, bhk);
+            statement.setString(7, category);
+            String filePath= savePath + File.separator + fileName ;
+            System.out.println("file path " + filePath);
+            statement.setString(8,filePath);
+            statement.executeUpdate(sql);*/
+            /*if (inputStream != null) {
+                // fetches input stream of the upload file for the blob column
+            	log.info(inputStream);
+                statement.setBlob(8, inputStream);
+            }
+          //  statement.setString(2, contact);
+            // sends the statement to the database server
+            int row = statement.executeUpdate();
+            if (row > 0) {
+              //  message = "File uploaded and saved into database";
+				response.sendRedirect("viewAd.jsp");
+
+            }*/
+        } catch (SQLException ex) {
+            message = "ERROR: " + ex.getMessage();
+            ex.printStackTrace();
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+            if (conn != null) {
+                // closes the database connection
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            // sets the message in request scope
+            //request.setAttribute("Message", message);
+             
+            // forwards to the message page
+            getServletContext().getRequestDispatcher("/viewAd2.jsp").forward(request, response);
+        }
+
+
+
+
+	}
+	 private String extractFileName(Part part) {
+	        String contentDisp = part.getHeader("content-disposition");
+	        String[] items = contentDisp.split(";");
+	        for (String s : items) {
+	            if (s.trim().startsWith("filename")) {
+	                return s.substring(s.indexOf("=") + 2, s.length()-1);
+	            }
+	        }
+	        return "";
+	    }
+}

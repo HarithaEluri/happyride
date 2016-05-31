@@ -1,0 +1,13 @@
+!SESSION 2016-05-30 19:17:48.579 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_66
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2016-05-30 19:19:01.546
+!MESSAGE cacheFile=file:/home/dell/eclipse/configuration/org.eclipse.wst.server.discovery/serverAdapterSitesDetails.xml
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2016-05-30 19:19:37.575
+!MESSAGE cacheFile=file:/home/dell/eclipse/configuration/org.eclipse.wst.server.discovery/serverAdapterSitesDetails.xml

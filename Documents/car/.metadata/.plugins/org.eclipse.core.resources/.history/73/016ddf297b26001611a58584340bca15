@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+isErrorPage="true" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<%@include file = "header.jsp" %>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Error</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+<div class = "container">
+	<!----start-wrap----->
+	<div class="wrap">
+		<!----start-header----->
+		<div class="header"  id="top">
+			<!----top-header----->
+			<div class="top-header">
+							<!----start-social-icons----->
+	<!--  		   	<div class="social-icons">
+					<ul>
+						<li><a href="https://www.facebook.com/"><img src="images/facebook.png" title="facebook" /></a></li>
+						<li><a href="https://twitter.com/"><img src="images/twitter.png" title="twitter" /></a></li>
+						<li><a href="https://plus.google.com/"><img src="images/google.png" title="google plus" /></a></li>
+					</ul>
+				</div> --> 
+				<div class="clear"> </div>
+				<!----End-social-icons----->
+			</div> 
+			<!----End-top-header----->
+			<!---start-top-nav---->
+			<div class="top-nav">
+				<div class="top-nav-left">
+					<ul>
+						<!-- <li><a href="welcome.jsp"><img src="images/logo1.png" width = 90px; title="logo" /></a></li> -->
+						<li><a href="welcome.jsp">Home</a></li>
+						<li><a href="about.jsp">About Us</a></li>
+						<li><a href="LoginForm.jsp">Login</a></li>
+			
+						<li><a href="gallery.html">Gallery</a></li>
+						<!--<li><a href="viewAd.jsp">History</a>-->
+						
+						<div class="clear"> </div>
+					</ul>
+				</div>
+				<div class="top-nav-right">
+					<form>
+						<input type="text"><input type="submit" value="" />
+					</form>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<!---End-top-nav--->
+		</div>
+		<!----End-header----->
+	</div>
+    
+
+</div>
+<center>
+
+<h2>
+
+Apologize there has been mistake please go back to the home and try again
+
+</h2>
+
+
+</center>
+
+</body>
+
+</html>
+

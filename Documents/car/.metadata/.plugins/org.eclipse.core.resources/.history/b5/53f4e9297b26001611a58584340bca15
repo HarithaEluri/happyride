@@ -1,0 +1,25 @@
+1.Summary:
+     1. Project Name : hamaraGhar.com
+     2. Team Name : Titan
+     3. Project Description:
+          hamaraGhar.com is a web based real estate application. It should be able to help people to find, sell and buy their properties and support with some of the 
+          assumptions that we have considered to keep it simple. The purpose here is not to create a fully functional housing application but to 
+          create a sample application and conceptually make it as close as possible to a real time application.        
+2.Functionality :
+     1. Login Functionality
+     2. SignUp functionality
+     3. LogOut Functionality
+     4. Post Functionality
+     5. Update Functionality
+     6. Mark the house as sold
+     7. Fb Login
+     8. Map Searching
+     9. Price Filter
+
+
+3.Software Requirements:
+     1. Programming Language : Java 
+     2. Database:  mySql
+     3. Web Technologies: BootStrap, HTML5, CSS
+     4. Operating System: Linux/Windows7 or above/Mac/Debian
+     5. Web Server: Apache Tomcat 7.0

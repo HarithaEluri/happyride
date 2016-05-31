@@ -1,0 +1,142 @@
+package com.hamaraGhar.beans;
+
+public class postBean {
+
+	String username;
+	String contact;
+    String email;
+    String address;
+    String bhk;
+    int price;
+    String category;
+    String range1;
+    String range2;
+    String image;
+    String status;
+    String unique_id;
+   
+	public String getUnique_id() {
+		return unique_id;
+	}
+
+
+	public void setUnique_id(String unique_id) {
+		this.unique_id = unique_id;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public String getImage() {
+		return  image.substring(65) ;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+	public postBean(String username, String contact, String email,
+			String address, String bhk, int price, String category,String image,String status,String unique_id) {
+		super();
+		this.username = username;
+		this.contact = contact;
+		this.email = email;
+		this.address = address;
+		this.bhk = bhk;
+		this.price = price;
+		this.category = category;
+		this.image = image;
+		this.status=status;
+		this.unique_id = unique_id;
+	}
+	
+	
+    public postBean(String category, String range1, String range2) {
+		super();
+		this.category = category;
+		this.range1 = range1;
+		this.range2 = range2;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getBhk() {
+		return bhk;
+	}
+	public void setBhk(String bhk) {
+		this.bhk = bhk;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public String getRange1() {
+		return range1;
+	}
+
+
+	public void setRange1(String range1) {
+		this.range1 = range1;
+	}
+
+
+	public String getRange2() {
+		return range2;
+	}
+
+
+	public void setRange2(String range2) {
+		this.range2 = range2;
+	}
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	
+
+    
+}

@@ -1,0 +1,89 @@
+package com.hamaraGhar.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.Properties;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import org.apache.log4j.BasicConfigurator;
+//import java.util.logging.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.Logger;
+
+import com.hamaraGhar.logs.HamaragharLog;
+
+
+public class ConnectionDao {
+	Connection con = null;
+    String URL,PASSWORD,USER;
+	public  Connection getConnection() {
+		//String url = "jdbc:mysql://localhost:3306/hamaraGharDB";
+		//String user = "root";
+		//String password = "password";
+		//final org.apache.log4j.Logger log = Logger.getLogger(ConnectionDao.class);
+		//final Object appender;
+		Logger log = Logger.getRootLogger();
+		BasicConfigurator.configure();
+	//	Logger log = Logger.getLogger(ConnectionDao.class);
+		/*try {
+            // specify the location of the .property file here
+            File file = new File("/home/user/eclipse/workingprogress/hamaraGharApp25552/WebContent/test.properties");
+            FileInputStream fileInput = new FileInputStream(file);
+            Properties properties = new Properties();
+            properties.load(fileInput);
+            fileInput.close();
+		
+
+            Enumeration enuKeys = properties.keys();
+            while (enuKeys.hasMoreElements()) {
+                String key = (String) enuKeys.nextElement();
+                String value = properties.getProperty(key);
+                System.out.println(key + ": " + value);
+            }
+            URL = properties.getProperty("url");
+            USER = properties.getProperty("user");
+            PASSWORD = properties.getProperty("password");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+		try {
+			//load driver
+			//Class.forName("com.mysql.jdbc.Driver");
+			Context initContext = new InitialContext();
+			Context envContext = (Context) initContext.lookup("java:comp/env");
+			DataSource ds = (DataSource) envContext.lookup("jdbc/hamaraGharDB");
+			Connection conn = ds.getConnection();
+			//System.out.println("driver loaded");
+			log.info("successfully connected");
+			//conn = DriverManager.getConnection(URL,USER,PASSWORD);
+			return conn;
+			//create connection
+			//con = DriverManager.getConnection(URL,USER,PASSWORD);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("successfully connected");
+		return null;
+	       
+	}
+
+}
