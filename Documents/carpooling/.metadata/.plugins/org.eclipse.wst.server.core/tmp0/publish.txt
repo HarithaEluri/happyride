@@ -1,0 +1,5 @@
+#Tomcat publish data
+#Tue Jun 07 09:48:02 IST 2016
+org.eclipse.jst.j2ee.server\:commons-io-2.5=WEB-INF/lib/commons-io-2.5.jar
+org.eclipse.jst.j2ee.server\:commons-fileupload-1.3.2=WEB-INF/lib/commons-fileupload-1.3.2.jar
+org.eclipse.jst.j2ee.server\:mysql-connector-java-5.1.39-bin=WEB-INF/lib/mysql-connector-java-5.1.39-bin.jar
